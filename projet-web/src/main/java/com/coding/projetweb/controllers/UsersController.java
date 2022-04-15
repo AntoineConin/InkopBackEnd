@@ -42,4 +42,8 @@ public class UsersController {
         dao.delete(id);
     }
 
+    @PostMapping("/login")
+    public void login(@RequestBody User user) throws SQLException{
+        dao.login(user.getName(), user.getPassword());
+    }
 }
