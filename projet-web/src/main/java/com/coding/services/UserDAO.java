@@ -56,6 +56,26 @@ public class UserDAO {
         }
     }
 
+    public User login(String login, String pswd ) throws SQLException {
+        try (Connection co = DriverManager.getConnection(JDBC_URL, JDBC_LOGIN, JDBC_PWD)) {
+            String sql = "SELECT * FROM users where username=? and pwd=?;";
+            try (PreparedStatement st = co.prepareStatement(sql)) {
+                st.setString(1, login);
+                st.setString(2, pswd);
+                try (ResultSet rs = st.executeQuery()) {
+                    if (rs.next()) {
+                        User u = new User();
+                        u.setId(rs.getInt("id"));
+                        u.setName(rs.getString("username"));
+                        u.setPassword(rs.getString("pwd"));
+                        return u;
+                    }
+                    return null;
+                }
+            }
+        }
+    }
+
     public void add(User user) throws SQLException {
         try (Connection co = DriverManager.getConnection(JDBC_URL, JDBC_LOGIN, JDBC_PWD)) {
             String sql = "INSERT INTO users (username, pwd) VALUES(?, ?);";
