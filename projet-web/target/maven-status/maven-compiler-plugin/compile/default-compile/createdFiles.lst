@@ -1,0 +1,7 @@
+com/coding/models/User.class
+com/coding/projetweb/ProjetwebApplication.class
+com/coding/projetweb/controllers/ItemsController.class
+com/coding/services/UserDAO.class
+com/coding/projetweb/controllers/UsersController.class
+com/coding/services/ItemDAO.class
+com/coding/models/Item.class
